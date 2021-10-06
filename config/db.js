@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//importing mongose URI from monfig json file
+//importing mongose URI from config json file
 const config = require("config");
 const db = config.get("mongoURI");
 
