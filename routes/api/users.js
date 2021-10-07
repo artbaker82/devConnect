@@ -3,11 +3,16 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator')
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const config = require('config')
 const User = require('../../models/User')
 //@route  GET api/users
 //@desc   Register User
 //@access  Public
+
+
 router.post("/", [
+    //using express validator to check required fields and lengths
     check('name', 'Name is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Please enter a password with 6 or more characters').isLength({min: 6})
@@ -21,6 +26,7 @@ router.post("/", [
 
     try {
 
+    //search for existing user
     let user = await User.findOne({ email})
 
     if (user) {
@@ -50,7 +56,19 @@ router.post("/", [
 
     //return jsonwebtoken
 
-    res.send("User Registered")
+    const payload = {
+        user: {
+            id: user.id
+        }
+    }
+
+    jwt.sign(payload, config.get('jwtSecret'), {expiresIn: 360000}, (err, token) => {
+        if (err) throw err;
+        
+        res.json({token});
+    });
+
+    
 
     } catch(err) {
         console.error(err.message);
