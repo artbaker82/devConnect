@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://magicFlight1590:9WbDB6ntAl5YWFjS@devconnector.m6zmq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "44c176d3af4c45803e9a",
+    "githubSecret": "fa111b030df418385b987d1a7b899760fa3340ea"
 }

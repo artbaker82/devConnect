@@ -6,11 +6,12 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 const User = require('../../models/User')
-//@route  GET api/users
+
+
+
+//@route  POST api/users
 //@desc   Register User
 //@access  Public
-
-
 router.post("/", [
     //using express validator to check required fields and lengths
     check('name', 'Name is required').not().isEmpty(),
