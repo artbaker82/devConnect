@@ -1,7 +1,11 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
+import PropTypes from "prop-types";
 
-export const Register = () => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,9 +20,9 @@ export const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("passwords do not match");
+      setAlert("Passwords do not match", "danger");
     } else {
-      console.log("success");
+      register({ name, email, password });
       //example of logging in user from the component
       //   const newUser = {
       //     name,
@@ -55,7 +59,7 @@ export const Register = () => {
             name='name'
             value={name}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
         </div>
         <div className='form-group'>
@@ -65,7 +69,7 @@ export const Register = () => {
             name='email'
             value={email}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -78,8 +82,8 @@ export const Register = () => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            minLength='6'
-            required
+            //minLength='6'
+            //required
           />
         </div>
         <div className='form-group'>
@@ -89,8 +93,8 @@ export const Register = () => {
             name='password2'
             value={password2}
             onChange={(e) => onChange(e)}
-            minLength='6'
-            required
+            //minLength='6'
+            //required
           />
         </div>
         <input type='submit' className='btn btn-primary' value='Register' />
@@ -101,3 +105,10 @@ export const Register = () => {
     </Fragment>
   );
 };
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert, register })(Register);
