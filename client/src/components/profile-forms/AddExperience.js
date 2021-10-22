@@ -77,7 +77,6 @@ const AddExperience = ({ addExperience, history }) => {
             <input
               type='checkbox'
               name='current'
-              value=''
               value={current}
               checked={current}
               onChange={(e) => {
@@ -120,4 +119,4 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(AddExperience);
+export default connect(null, { addExperience })(withRouter(AddExperience));

@@ -3,7 +3,6 @@ import { setAlert } from "./alert";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  SET_ALERT,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,

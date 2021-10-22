@@ -76,7 +76,6 @@ const AddEducation = ({ addEducation, history }) => {
             <input
               type='checkbox'
               name='current'
-              value=''
               value={current}
               checked={current}
               onChange={(e) => {
@@ -118,5 +117,5 @@ const AddEducation = ({ addEducation, history }) => {
 AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
 };
-
-export default connect(null, { addEducation })(AddEducation);
+//we use history.push in the add education action, so we wrap the component in withRouter
+export default connect(null, { addEducation })(withRouter(AddEducation));

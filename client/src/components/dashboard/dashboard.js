@@ -17,7 +17,7 @@ const Dashboard = ({
   //load profile data into state
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   //while server process is being requested, show spinner gif
   return loading && profile === null ? (
     <Spinner />
